@@ -4,8 +4,10 @@
 <p>introduction</p><%= @user.introduction %>
 
 <% if @user == current_user %>
-<%= link_to "EDIT", edit_user_path(@user) %>
+<p><%= link_to "EDIT", edit_user_path(@user) %></p>
 <% end %>
+
+
 
 
 
