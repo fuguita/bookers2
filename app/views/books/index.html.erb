@@ -12,12 +12,17 @@
     <tr>
      <td>
        <%= link_to book_path(book.id) do %>
-       <%= image_tag book.get_profile_image  %>
-     </td>
-     <td>
-       <%= book.title %>
+       <%= image_tag book.user.get_profile_image(50,50) %>
        <% end %>
      </td>
+     <td>
+          <%= link_to book_path(book.id) do %>
+       <%= book.title %>
+          <% end %>
+
+     </td>
+
+
      <td>
        <%= book.body %>
 

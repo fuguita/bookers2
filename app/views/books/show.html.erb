@@ -3,27 +3,35 @@
  <tbody>
  <tr>
    <td>
-    <%= image_tag @book.user.get_profile_image %>
+    <%= image_tag @book.user.get_profile_image(50,50) %><br>
+    <%= link_to user_path(@user.id) do %>
+    <%= @book.user.name %>
+    <% end %>
    </td>
-  <td>
-    <%= @book.title %>
-  </td>
+
+ <td>
+       <%= link_to book_path(@book.id) do %>
+       <%= @book.title %>
+    <% end %>
+     </td>
   <td>
     <%= @book.body %>
   </td>
+
   <div>
     <% if @user == current_user %>
   <td>
-   <%= link_to "Edit" edit_book_path(@book) %>
+   <%= link_to "Edit", edit_book_path(@book) %>
   </td>
   <td>
-   <%= link_to "Destroy" book_path(@book), method: :delate %>
-  </td>
+   <%= link_to "Destroy", book_path(@book), method: :delate %>
   <% end %>
+  </td>
+
   </div>
-  
+
  </tr>
-  
+
   </tbody>
 </table>
 
