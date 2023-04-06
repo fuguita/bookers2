@@ -28,7 +28,7 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    @book.update
+    @book.update(book_params)
     redirect_to book_path(@book)
   end
 
@@ -43,7 +43,7 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end
-
+  
   def is_matching_book
     book = Book.find(params[:id])
     user = book.user
@@ -52,4 +52,7 @@ class BooksController < ApplicationController
   end
 end
 
+
+
 end
+
