@@ -3,9 +3,8 @@
 <p>name</p><%= @user.name %>
 <p>introduction</p><%= @user.introduction %>
 
-<% if @user == current_user %>
+
 <p><%= link_to "EDIT", edit_user_path(@user) %></p>
-<% end %>
 
 
 <h1>New book</h1>
