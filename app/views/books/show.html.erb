@@ -1,3 +1,5 @@
+<div><%= flash[:notice] %></div>
+
 <%= render 'users/info', user: @user %>
 <%= render 'post', book: @book %>
 
@@ -30,7 +32,7 @@
    <%= link_to "Destroy", book_path(@book), method: :delete %>
 <% end %>
   </td>
-  
+
 
   </div>
 
