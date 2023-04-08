@@ -1,7 +1,20 @@
-<h1>User info</h1>
+<h2>User info</h2>
 <%= image_tag user.get_profile_image(100,100) %>
-<p>name</p><%= user.name %>
-<p>introduction</p><%= user.introduction %>
 
+<table class="table">
+ <tbody>
 
-<p><%= link_to "EDIT", edit_user_path(user) %></p>
+  <tr></tr>
+     <th><p>name</p></th><th><%= user.name %></th>
+  </tr>
+  <tr>
+     <th><p>introduction</p></th><th><%= user.introduction %></th>
+  </tr>
+ </tbody>
+</table>
+
+<div class="row">
+<p><%= link_to edit_user_path(user) do %></p>
+<i class="fas fa-user-cog"></i>
+<% end %>
+</div>

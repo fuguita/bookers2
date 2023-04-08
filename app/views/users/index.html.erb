@@ -1,10 +1,5 @@
-<h1>New book</h1>
-
-<%= form_with model: @book do |f| %>
-<p>Title</p><%= f.text_field :title %>
-<p>Opinion</p><%= f.text_area :body %><br>
-<%= f.submit "Create Book" %>
-<% end %>
+<%= render 'users/info', user: current_user %>
+<%= render 'books/post', book: @book %>
 
 
 
@@ -19,7 +14,7 @@
    <tbody>
      <% @users.each do |user| %>
      <tr>
-       <td><%= image_tag user.get_profile_image(50,50) %></td>
+       <td><%= image_tag user.get_profile_image(80,80) %></td>
        <td><%= user.name %></td>
        <td><%= link_to "show", user_path(user.id) %></td>
      </tr>
