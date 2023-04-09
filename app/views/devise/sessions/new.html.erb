@@ -6,7 +6,7 @@
 <%= form_with model: @user, url: user_session_path do |f| %>
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, autofocus: true %>
   </div>
 
   <div class="field">
@@ -22,7 +22,7 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in", class: "btn btn-primary"%>
+    <%= f.submit "Log in", class: "btn btn-sm btn-primary"%>
   </div>
 <% end %>
 
