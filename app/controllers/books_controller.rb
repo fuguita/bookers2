@@ -20,11 +20,13 @@ class BooksController < ApplicationController
   def index
   @books = Book.all
   @book = Book.new
+  @book_comment = BookComment.new
   end
 
   def show
     @book = Book.find(params[:id])
     @user = @book.user
+    @book_comment = BookComment.new
   end
 
   def edit

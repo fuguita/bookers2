@@ -27,21 +27,57 @@
   <td>
     <%= @book.body %>
   </td>
+   <td>
+      <% if @book.liked_by?(current_user) %>
+        <%= link_to book_likes_path(@book), method: :delete do %>
+        <i class="fas fa-heart"></i>
+        <%= @book.likes.count %>
+      <% end %>
+      <% else %>
+        <%= link_to book_likes_path(@book), method: :post do %>
+        <i class="far fa-heart"></i>
+        <%= @book.likes.count %>
+        <% end %>
+      <% end %>
+     </td>
+     <td>コメント数<%= @book.book_comments.count %></td>
 
-  <div>
-    <% if @user == current_user %>
-  <td>
-   <%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %>
-  </td>
-  <td>
-   <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
-<% end %>
-  </td>
-  </div>
-
- </tr>
+     <div>
+        <% if @user == current_user %>
+           <td>
+            <%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %>
+           </td>
+           <td>
+            <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
+         <% end %>
+           </td>
+     </div>
+    </tr>
   </tbody>
 </table>
+
+<table>
+ <tbody>
+  <% @book.book_comments.each do |book_comment| %>
+  <tr>
+   <td>
+    <%= image_tag book_comment.user.get_profile_image(100,100) %><br>
+    <%= book_comment.user.name %>
+   </td>
+   <td><%= book_comment.comment %></td>
+   <% if book_comment.user == current_user %>
+   <td><%= link_to 'Destroy', book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-danger" %></td>
+  </tr>
+  <% end %>
+  <% end %>
+ </tbody>
+</table>
+
+     <%= form_with model: [@book, @book_comment] do |f| %>
+       <%= f.text_area :comment, placeholder: "コメントをここに", class: "w-100" %>
+       <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+     <% end %>
+
 
     </div>
   </div>

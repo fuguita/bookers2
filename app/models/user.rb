@@ -7,6 +7,8 @@ class User < ApplicationRecord
     has_one_attached :profile_image
 
     has_many :books, dependent: :destroy
+    has_many :likes, dependent: :destroy
+    has_many :book_comments, dependent: :destroy
 
     validates :name, length: { in: 2..20 }, uniqueness: true
     validates :introduction, length: { maximum: 50 }
@@ -19,6 +21,18 @@ class User < ApplicationRecord
   end
   profile_image.variant(resize_to_limit: [width, height]).processed
     end
+
+    def self.search_for(word, method)
+    if method == 'perfect_match'
+      User.where(name: word)
+    elsif method == 'forward_match'
+      User.where('name LIKE ?', word+'%')
+    elsif method == 'backward_match'
+      User.where('name LIKE ?', '%'+word)
+    else method
+      User.where('name LIKE ?', '%'+word+'%')
+    end
+  end
 
 
 

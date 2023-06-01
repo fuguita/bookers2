@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
 
 
+
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
   resources :users, only: [:index, :show, :edit, :update]
-  resources :books, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+  resources :books, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+  resource  :likes, only: [:create, :destroy]
+  resources :book_comments, only: [:create, :destroy]
+  end
+  get "search" => "searches#search", as: 'search'
 
   root to: "homes#top"
   get 'home/about' => "homes#about", as:'about'
