@@ -15,21 +15,21 @@ class User < ApplicationRecord
 
 
     def get_profile_image(width, height)
-  unless profile_image.attached?
-    file_path = Rails.root.join('app/assets/images/default-image.jpg')
-    profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-  end
-  profile_image.variant(resize_to_limit: [width, height]).processed
+      unless profile_image.attached?
+        file_path = Rails.root.join('app/assets/images/default-image.jpg')
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      end
+      profile_image.variant(resize_to_limit: [width, height]).processed
     end
 
-    def self.search_for(word, method)
+  def self.search_for(word, method)
     if method == 'perfect_match'
       User.where(name: word)
     elsif method == 'forward_match'
       User.where('name LIKE ?', word+'%')
     elsif method == 'backward_match'
       User.where('name LIKE ?', '%'+word)
-    else method
+    elsif method
       User.where('name LIKE ?', '%'+word+'%')
     end
   end

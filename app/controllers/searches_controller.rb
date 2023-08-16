@@ -3,7 +3,7 @@ class SearchesController < ApplicationController
   def search
     @word = params[:word]
     @model = params[:model]
-    @method = params[:method]
+    # @method = params[:method]
      if @model == "User"
        @records = User.search_for(@word, @method)
      else
