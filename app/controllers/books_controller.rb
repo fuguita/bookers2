@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :is_matching_book, only: [:edit, :update, :destroy]
 
   def new
     @book = Book.new
