@@ -20,7 +20,7 @@ class User < ApplicationRecord
   # 与フォロー関係を通じて参照→自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
 
-
+    validates :name, length: { in: 2..20 }, uniqueness: true
     validates :introduction, length: { maximum: 50 }
 
 
