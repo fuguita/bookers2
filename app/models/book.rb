@@ -7,7 +7,7 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true, length: { maximum: 200 }
 
-  def liked_by?(user)
+  def liked_by?(use)
     likes.exists?(user_id: user.id)
   end
 
