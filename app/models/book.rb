@@ -17,7 +17,7 @@ class Book < ApplicationRecord
     elsif method == 'forward_match'
       Book.where('title LIKE ?', word+'%')
     elsif method == 'backward_match'
-      Book.where('title LIKE ?', '%'+word)
+      
     else
       Book.where('title LIKE ?', '%'+word+'%')
     end
